@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'email', 'username', 'password')
 
-    def create(self, validated_data):
+    def create(self, validated_data: User) -> User:
         user = User.objects.create(
             email=validated_data['email'],
             username=validated_data['username'],

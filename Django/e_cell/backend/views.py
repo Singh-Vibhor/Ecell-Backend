@@ -35,6 +35,7 @@ class Posts:
         queryset = PostSerializer(queryset, many = False)
         return Response(queryset.data)
     
+    
     @api_view(['GET'])
     def searchPosts(request: rest_framework.request.Request) -> rest_framework.response.Response:
         
@@ -48,6 +49,7 @@ class Posts:
         queryset = PostSerializer(queryset, many = True)
         return Response(queryset.data)
     
+
     @api_view(['POST'])
     def deletePost(request: rest_framework.request.Request, pk) -> HttpResponse:
         post = Post.objects.get(id = pk)
@@ -56,6 +58,7 @@ class Posts:
             return HttpResponse(0)
         except:
             return HttpResponse(-1)
+        
 
     @api_view(['POST'])
     def updatePost(request: rest_framework.request.Request) -> HttpResponse:
@@ -64,12 +67,12 @@ class Posts:
         post = Post.objects.get(id = pk)
         post.name = data['name']
         post.description = data['description']
-
         try:
             post.save()
             return HttpResponse(0)
         except:
             return HttpResponse(-1)
+        
     
     @api_view(['POST'])
     def createPost(request: rest_framework.request.Request) -> HttpResponse:
@@ -84,6 +87,7 @@ class Posts:
         return HttpResponse(-1)
 
         
+
 class Users:
 
     @api_view(['GET', 'POST'])
@@ -100,7 +104,7 @@ class Users:
 
     
     @api_view(['POST'])
-    def login(request):
+    def login(request: rest_framework.request.Request) -> HttpResponse:
         data = json.loads(request.body.decode("utf-8"))
         for x in User.objects.all():
             if x.username==data['username'] and check_password(data['password'], x.password):
