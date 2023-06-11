@@ -86,6 +86,15 @@ class Posts:
             except:
                 return HttpResponse(-1)
         return HttpResponse(-1)
+    
+    @api_view(('GET',))
+    def filterPost(request: rest_framework.request.Request) -> rest_framework.response.Response:
+        q = request.GET.get('q')
+        data = Post.objects.filter(title__icontains=q)
+        data1 = PostSerializer(data, many = True)
+        return Response(data1.data)
+    
+
 
         
 

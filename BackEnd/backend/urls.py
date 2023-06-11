@@ -18,6 +18,7 @@ urlpatterns = [
     path('login/', views.Users.login),
     path('signup/', views.Users.signUp),
     path('createPost/', views.Posts.createPost),
+    path('filterPost/', views.Posts.filterPost),
 
 ]
 

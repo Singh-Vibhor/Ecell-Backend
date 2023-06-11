@@ -3,7 +3,7 @@ from .models import Post
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 
-
+#I am testing serializer
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
